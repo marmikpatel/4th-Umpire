@@ -24,8 +24,7 @@ $js_files=array('bootstrap.min');
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php echo $cakeDescription ?>:
-		<?php echo $title_for_layout; ?>
+		<?php echo $this->request->params['controller']; ?>
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
