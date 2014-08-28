@@ -14,7 +14,7 @@
 				<td><?php echo $value['Fixture']['datetime'];  ?></td>
 				<td><?php echo $value['Team']['team_name'];  ?></td>
 				<td><?php echo $value['Fixture']['venue'];  ?></td>
-				<td><?php echo $this->Html->link($value['Result']['score'],array('controller'=>'Fixtures','action'=>'fixture_stat',$value['Fixture']['id'])); ?>
+				<td><?php echo $this->Html->link($value['Result']['score'],array('controller'=>'Fixtures','action'=>'fixture_stat',$value['Fixture']['id'])); ?></td>
 			</tr>
 
 
