@@ -73,5 +73,21 @@
 			// $this->set('away_team_bat',$away_team_bat);
 		}
 
+
+		public function admin_edit($fixtureid)
+		{
+			$find=$this->Fixture->editdata();
+
+		}
+
+		public function admin_add()
+		{
+		
+			if(!empty($this->request->data))
+			{
+				echo "<pre>"; print_r($this->request->data); exit;
+			}	
+		}
+
 	}
 ?>

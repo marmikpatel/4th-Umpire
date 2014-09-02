@@ -69,5 +69,11 @@
 				return $fixture_data;
 		}
 
+
+		public function editdata()
+		{
+			
+		}
+
 	}
 ?>

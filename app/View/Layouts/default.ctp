@@ -16,8 +16,8 @@
 
 //$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
 //$cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
-$css_files=array('bootstrap.min','cake.generic');
-$js_files=array('bootstrap.min');
+$css_files=array('jquery-ui','bootstrap.min','cake.generic');
+$js_files=array('jquery-1.10.2','jquery-ui','bootstrap.min');
 ?>
 <!DOCTYPE html>
 <html>
@@ -53,6 +53,7 @@ $js_files=array('bootstrap.min');
 					'http://www.cakephp.org/',
 					array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
 				);*/
+				 echo $this->element('footer');
 			?>
 			<p>
 				<?php //echo $cakeVersion; ?>
