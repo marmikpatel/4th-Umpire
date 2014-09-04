@@ -10,5 +10,15 @@
 									'className'=>'FixtureBat',
 									'foreignKey'=>'playerid')
 								);	
+		public $hasOne = array('Image' => array(
+			       'className' => 'Image',
+			       'foreignKey'=>'playerid',
+			        // 'conditions'=>' Image.playerid = TeamPlayer.playerid'
+			       //error : itz taking image.playerid=> teamplayer.id   :(
+
+		        	),
+		        
+		   );
+
 	}
 ?>
