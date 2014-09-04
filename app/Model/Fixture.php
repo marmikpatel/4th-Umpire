@@ -2,10 +2,10 @@
 	class Fixture extends AppModel {
 		public $useTable = 'fixture';
 		public $name='Fixture';
-		public $hasOne= array('Result'=>array(
+		/*public $hasOne= array('Result'=>array(
 			 					'className'=>'Result',
 			 					'foreignKey'=>'fixture_id'
-			 				 					));
+			 				 					));*/
 			
 
 		public $belongsTo= array('Team'=>array(
@@ -75,5 +75,33 @@
 			
 		}
 
+		public function adddata($data)
+		{
+			$this->recursive=-1;
+			
+			$find_opponant=$this->Team->find('first',array('conditions'=>array('Team.team_name'=>$data['opponant_team'])));
+			$find_winner=$this->Team->find('first',array('conditions'=>array('Team.team_name'=>$data['winner'])));
+			$value['Fixture']['team_id']='1';
+			$value['Fixture']['datetime']=$data['datepicker'];
+			$value['Fixture']['venue']=$data['venue'];
+			$value['Fixture']['opponent_id']=$find_opponant['Team']['id'];
+			$value['Fixture']['score']=$data['result'];
+			$value['Fixture']['winner_id']=$find_winner['Team']['id'];
+			if($this->save($value))
+			{
+				return $find_opponant['Team']['team_name'];	
+			}
+			
+			 
+		}
+		public function findaway($fid)
+		{
+			
+			$find=$this->find('first',array('conditions'=>array('Fixture.id'=>$fid),
+											'fields'=>array('Fixture.opponent_id')));
+			return $find;
+		}
+
+		
 	}
 ?>

@@ -8,6 +8,7 @@
 		{
 			$teamid='1';
 			$find=$this->Fixture->getdata($teamid);
+			//echo "<pre>"; print_r($find); exit;
 			$this->set('fixture',$find);
 		}
 
@@ -74,20 +75,9 @@
 		}
 
 
-		public function admin_edit($fixtureid)
-		{
-			$find=$this->Fixture->editdata();
-
-		}
-
-		public function admin_add()
-		{
 		
-			if(!empty($this->request->data))
-			{
-				echo "<pre>"; print_r($this->request->data); exit;
-			}	
-		}
+
+		
 
 	}
 ?>
