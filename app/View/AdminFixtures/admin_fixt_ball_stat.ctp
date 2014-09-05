@@ -17,7 +17,7 @@
 			<th>Extras</th>
 		</tr>
 		<?php for ($i=0; $i <11 ; $i++) { ?>
-			<tr class=<?php echo $i;?>>
+		<tr class=<?php echo $i;?>>
 			<td><input name=<?php echo 'Home'.$i."playername" ?> value="" type="text"></td>
 			<td><input name=<?php echo 'Home'.$i."over" ?> value="" type="text"></td>
 			<td><input name=<?php echo 'Home'.$i."match" ?> value="" type="text"></td>

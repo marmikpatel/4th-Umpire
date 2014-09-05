@@ -22,7 +22,7 @@
 
 		public function home_ball_stat($home,$fixtureid,$teamid)
 		{
-			//echo "<pre>"; print_r($home); 
+			echo "<pre>"; print_r($home); 
 			$i=0;
 			$j=0;
 			foreach ($home as $key => $value) {
@@ -30,9 +30,7 @@
 				if($i%6==0)
 				{
 					if(!empty($value)){
-						if(!empty($lastinserid)) {
-			         			$this->id = $lastinserid;
-			        	}
+
 						$find_pid=$this->Player->find('first',array('conditions'=>array('Player.first_name'=>$home[$key]),
 																	'fields'=>array('Player.id')));
 						$data[$j]['team_id']=$teamid;
@@ -46,22 +44,20 @@
 						$data[$j]['r']=$home[$run];
 						$wickets='Home'.$j.'wickets';
 						$data[$j]['w']=$home[$wickets];
-						$data[$j]['econ']='5.57';
+						$econ=$home[$run]/$home[$over];
+						$data[$j]['econ']=$econ;
 						$extra='Home'.$j.'extra';
 						$data[$j]['extra']=$home[$extra];
 
-						//echo "<pre>"; print_r($data[$j]);
+						$this->create();
 						$this->save($data[$j]);
-						$lastinserid = $this->getlastInsertId();
-					    $lastinserid++;
+
 						
 						$j++;
 					}
 				}
-				// $j++;
 				$i++;
 			}
-			// echo "<pre>"; print_r($data); 
 			return true;		
 
 		}
@@ -76,9 +72,7 @@
 				{
 					if(!empty($value))
 					{
-						if(!empty($lastinserid)) {
-			         		$this->id = $lastinserid;
-			        	}
+		
 						$find_pid=$this->Player->find('first',array('conditions'=>array('Player.first_name'=>$away[$key]),
 																	'fields'=>array('Player.id')));
 
@@ -95,13 +89,14 @@
 						$data[$j]['r']=$away[$run];
 						$wickets='Away'.$j.'wickets';
 						$data[$j]['w']=$away[$wickets];
-						$data[$j]['econ']='5.57';
+						$econ=$away[$run]/$away[$over];
+						$data[$j]['econ']=$econ;
 						$extra='Away'.$j.'extra';
 						$data[$j]['extra']=$away[$extra];
+						$this->create();
 						$this->save($data[$j]); 
 
-						$lastinserid = $this->getlastInsertId();
-					    $lastinserid++;
+					
 						$j++;
 					}
 				}$i++;

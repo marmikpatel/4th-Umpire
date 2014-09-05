@@ -2,7 +2,7 @@
 	class AdminFixturesController extends AppController{
 		public $name = 'AdminFixtures';
 		public $helpers= array('Html' , 'Form');
-		public $uses=array('Fixture','Player','Team','FixtureBall');
+		public $uses=array('Fixture','Player','Team','FixtureBall','FixtureBat');
 
 		public function admin_add()
 		{
@@ -75,8 +75,40 @@
 		}
 
 
-		public function admin_fixt_home_bat()
+		public function admin_fixt_home_bat($fixtureid)
 		{
+			$this->set('fixtureid',$fixtureid);
+			$home_team=$this->Team->find('first',array('conditions'=>array('Team.id'=>'1'),
+															'fields'=>array('Team.team_name,Team.id')));
+			$this->set('home_team',$home_team);
+			if(!empty($this->request->data))
+			{
+				foreach ($this->request->data as $key => $value) {
+						$substr=substr($key,0,4);
+						if($substr=="Home")
+						{
+							$home[$key]=$value;
+						} 
+						if($substr=="Away")
+						{
+							$away[$key]=$value;
+						}						
+				}
+				$this->FixtureBat->home_bat_stat($home,$fixtureid,$home_team['Team']['id']);
+				
+				$this->FixtureBat->away_bat_stat($away,$fixtureid,$this->request->data['id']);
+			}
+		}
+
+		public function admin_fixt_away_bat()
+		{
+			$this->layout="ajax";
+			$find=$this->Fixture->findaway($this->request->data['fixtureid']);
+			$away_team=$this->Team->find('first',array('conditions'=>array('Team.id'=>$find['Fixture']['opponent_id']),
+															'fields'=>array('Team.team_name,Team.id')));
+
+			$this->set('away_team',$away_team['Team']['team_name']);
+			$this->set('away_id',$away_team['Team']['id']);
 
 		}
 
