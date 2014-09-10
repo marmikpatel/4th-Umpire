@@ -11,13 +11,14 @@
 		public $belongsTo= array('Team'=>array(
 									'className'=>'Team',
 									'foreignKey'=>'opponent_id'
-									// 'conditions'=>array('Team.id'=>'Fixture.team_id')
 									),
 								'Team1'=>array(
 									'className'=>'Team',
 									'foreignKey'=>'team_id'
-									// 'conditions'=>array('Team.id'=>'Fixture.team_id')
-									));
+									),
+								'Winner'=>array(
+									'className'=>'Team',
+									'foreignKey'=>'winner_id'));
 
 
 		
@@ -70,9 +71,24 @@
 		}
 
 
-		public function editdata()
+		public function editdata($fixtureid)
 		{
 			
+			$find=$this->find('all',array('conditions'=>array('Fixture.id'=>$fixtureid)));
+			return $find;
+		}
+
+		public function updatedata($fixtureid,$data)
+		{
+		//	echo "<pre>"; print_r($data); exit;
+			$find_opponant=$this->Team->find('first',array('conditions'=>array('Team.team_name'=>$data['opponant_team'])));
+			$find_winner=$this->Team->find('first',array('conditions'=>array('Team.team_name'=>$data['winner'])));
+			$this->updateAll(array('Fixture.datetime'=>'"'.$data['datepicker'].'"',
+									'Fixture.score'=>'"'.$data['result'].'"',
+									'Fixture.venue'=>'"'.$data['venue'].'"',
+									'Fixture.opponent_id'=>'"'.$find_opponant['Team']['id'].'"',
+									'Fixture.winner_id'=>'"'.$find_winner['Team']['id'].'"'),
+								array('Fixture.id'=>$fixtureid));
 		}
 
 		public function adddata($data)
@@ -99,6 +115,15 @@
 			
 			$find=$this->find('first',array('conditions'=>array('Fixture.id'=>$fid),
 											'fields'=>array('Fixture.opponent_id')));
+			return $find;
+		}
+
+		public function edit_home_ball_view($fixtureid)
+		{
+
+			$this->unbindModel(array('hasMany' => array('FixtureBall','FixtureBat')));
+
+			$find=$this->find('all',array('conditions'=>array('Fixture.id'=>$fixtureid)));
 			return $find;
 		}
 

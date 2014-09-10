@@ -13,10 +13,12 @@
 
 		public $belongsTo=array('Player'=>array(
 									'className'=>'Player',
-									'foreignKey'=>'playerid'),
+									'foreignKey'=>'playerid')
+		,
 								'Fixture'=>array(
 									'className'=>'Fixture',
-									'foreignKey'=>'fixtureid'));
+									'foreignKey'=>'fixtureid')
+		);
 
 
 
@@ -102,5 +104,24 @@
 				}$i++;
 			}
 		}
+
+		public function getballinfo($fixtureid)
+		{
+
+			$this->unbindModel(array('hasOne' => array('Team')));
+			// $this->Fixture->unbindModel(array('belongsTo' => array('Team')));
+
+			// $this->Fixture->unbindModel(array('belongsTo' => array('Team')));
+			// echo "<pre>"; print_r($fixturestat); exit;
+			 $find1 = $this->find('all', array('conditions' => array('FixtureBall.fixtureid' => $fixtureid)));
+		
+			return $find1;			
+		}
+
+		public function edithome_ball($fixtureid,$data)
+		{
+			echo "<pre>"; print_r($data); exit;
+		}
+
 	}
 ?>

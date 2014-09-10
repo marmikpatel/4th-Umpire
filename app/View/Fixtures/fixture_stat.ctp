@@ -1,6 +1,6 @@
 <?php
 	// echo "<pre>"; print_r($home_team_ball);
-	// echo "<pre>"; print_r($home_team_bat);
+	//echo "<pre>"; print_r($home_team_bat); exit;
 	// echo "<pre>"; print_r($away_team_ball);
 	// echo "<pre>"; print_r($away_team_bat);
 	// echo "<pre>"; print_r($home_team_name);
@@ -8,7 +8,7 @@
 ?>
 <div>
 	<h2><?php echo $home_team_name; ?> </h2>
-	
+	<h3>Batting Statistics</h3>
 	<table class="table table-hover">
 		<tr>
 				<th>Players</th>
@@ -19,21 +19,19 @@
 				<th>6s</th>
 				<th>SR</th>
 		</tr>
-		<?php foreach ($home_team as $key => $value) {
-				//echo "<pre>"; print_r($value[$key]['FixtureBat'][$key]['detail']); exit;
-		 ?>
+		<?php foreach ($home_team_bat as $key => $value) {?>
 		 <tr>
-		 	<td><?php echo $value['0']['Player']['first_name']; ?></td>
-		 	<td><?php echo $value['0']['FixtureBat']['0']['detail'];?></td>
-		 	<td><?php echo $value['0']['FixtureBat']['0']['run']?></td>
-		 	<td><?php echo $value['0']['FixtureBat']['0']['balls']?></td>
-		 	<td><?php echo $value['0']['FixtureBat']['0']['4s']?></td>
-		 	<td><?php echo $value['0']['FixtureBat']['0']['6s']?></td>
-		 	<td><?php echo $value['0']['FixtureBat']['0']['sr']?></td>
+		 	<td><?php echo $value['Player']['first_name']; ?></td>
+		 	<td><?php echo $value['FixtureBat']['detail'];?></td>
+		 	<td><?php echo $value['FixtureBat']['run']?></td>
+		 	<td><?php echo $value['FixtureBat']['balls']?></td>
+		 	<td><?php echo $value['FixtureBat']['4s']?></td>
+		 	<td><?php echo $value['FixtureBat']['6s']?></td>
+		 	<td><?php echo $value['FixtureBat']['sr']?></td>
 		 </tr>
-		<?php }?>
+		<?php } ?>
 	</table>
-
+	<h3>Bowling Statistics</h3>
 	<table class="table table-hover">
 		<tr>
 				<th>Players</th>
@@ -44,22 +42,23 @@
 				<th>Econ</th>
 				<th>Extras</th>
 		</tr>
-		<?php foreach ($home_team as $key => $value) {?>
+		<?php foreach ($home_team_ball as $key => $value) {?>
 		 <tr>
-		 	<td><?php echo $value['0']['Player']['first_name']; ?></td>
-		 	<td><?php echo $value['0']['FixtureBall']['0']['o'];?></td>
-		 	<td><?php echo $value['0']['FixtureBall']['0']['m']?></td>
-		 	<td><?php echo $value['0']['FixtureBall']['0']['r']?></td>
-		 	<td><?php echo $value['0']['FixtureBall']['0']['w']?></td>
-		 	<td><?php echo $value['0']['FixtureBall']['0']['econ']?></td>
-		 	<td><?php echo $value['0']['FixtureBall']['0']['extra']?></td>
+		 	<td><?php echo $value['Player']['first_name']; ?></td>
+		 	<td><?php echo $value['FixtureBall']['o'];?></td>
+		 	<td><?php echo $value['FixtureBall']['m']?></td>
+		 	<td><?php echo $value['FixtureBall']['r']?></td>
+		 	<td><?php echo $value['FixtureBall']['w']?></td>
+		 	<td><?php echo $value['FixtureBall']['econ']?></td>
+		 	<td><?php echo $value['FixtureBall']['extra']?></td>
 		 </tr>
 		<?php }?>
 	</table>
 
 
 	<h2><?php echo $away_team_name; ?> </h2>
-	
+	<h3>Batting Statistics</h3>
+
 	<table class="table table-hover">
 		<tr>
 				<th>Players</th>
@@ -70,20 +69,20 @@
 				<th>6s</th>
 				<th>SR</th>
 		</tr>
-		<?php foreach ($away_team as $key => $value) {
-				//echo "<pre>"; print_r($value[$key]['FixtureBat'][$key]['detail']); exit;
+		<?php foreach ($away_team_bat as $key => $value) {
 		 ?>
 		 <tr>
-		 	<td><?php echo $value['0']['Player']['first_name']; ?></td>
-		 	<td><?php echo $value['0']['FixtureBat']['0']['detail'];?></td>
-		 	<td><?php echo $value['0']['FixtureBat']['0']['run']?></td>
-		 	<td><?php echo $value['0']['FixtureBat']['0']['balls']?></td>
-		 	<td><?php echo $value['0']['FixtureBat']['0']['4s']?></td>
-		 	<td><?php echo $value['0']['FixtureBat']['0']['6s']?></td>
-		 	<td><?php echo $value['0']['FixtureBat']['0']['sr']?></td>
+		 	<td><?php echo $value['Player']['first_name']; ?></td>
+		 	<td><?php echo $value['FixtureBat']['detail'];?></td>
+		 	<td><?php echo $value['FixtureBat']['run']?></td>
+		 	<td><?php echo $value['FixtureBat']['balls']?></td>
+		 	<td><?php echo $value['FixtureBat']['4s']?></td>
+		 	<td><?php echo $value['FixtureBat']['6s']?></td>
+		 	<td><?php echo $value['FixtureBat']['sr']?></td>
 		 </tr>
-		<?php }?>
+		<?php } ?>
 	</table>
+		<h3>Bowling Statistics</h3>
 
 	<table class="table table-hover">
 		<tr>
@@ -95,15 +94,15 @@
 				<th>Econ</th>
 				<th>Extras</th>
 		</tr>
-		<?php foreach ($away_team as $key => $value) {?>
+		<?php foreach ($away_team_ball as $key => $value) {?>
 		 <tr>
-		 	<td><?php echo $value['0']['Player']['first_name']; ?></td>
-		 	<td><?php echo $value['0']['FixtureBall']['0']['o'];?></td>
-		 	<td><?php echo $value['0']['FixtureBall']['0']['m']?></td>
-		 	<td><?php echo $value['0']['FixtureBall']['0']['r']?></td>
-		 	<td><?php echo $value['0']['FixtureBall']['0']['w']?></td>
-		 	<td><?php echo $value['0']['FixtureBall']['0']['econ']?></td>
-		 	<td><?php echo $value['0']['FixtureBall']['0']['extra']?></td>
+		 	<td><?php echo $value['Player']['first_name']; ?></td>
+		 	<td><?php echo $value['FixtureBall']['o'];?></td>
+		 	<td><?php echo $value['FixtureBall']['m']?></td>
+		 	<td><?php echo $value['FixtureBall']['r']?></td>
+		 	<td><?php echo $value['FixtureBall']['w']?></td>
+		 	<td><?php echo $value['FixtureBall']['econ']?></td>
+		 	<td><?php echo $value['FixtureBall']['extra']?></td>
 		 </tr>
 		<?php }?>
 	</table>

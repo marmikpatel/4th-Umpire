@@ -96,6 +96,16 @@
 			}
 		}
 
-		
+		public function getbatinfo($fixtureid)
+		{
+			$this->unbindModel(array('hasOne' => array('Team')));
+			// $this->Fixture->unbindModel(array('belongsTo' => array('Team')));
+
+			// $this->Fixture->unbindModel(array('belongsTo' => array('Team')));
+			// echo "<pre>"; print_r($fixturestat); exit;
+			 $find = $this->find('all', array('conditions' => array('FixtureBat.fixtureid' => $fixtureid)));
+
+			 return $find;	
+		}
 	}
 ?>

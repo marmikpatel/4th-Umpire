@@ -16,7 +16,7 @@
 				{
 					$this->Session->setFlash("Data Saved");
 					$fixture_id=$this->Fixture->getLastInsertId();
-					$this->redirect(array('controller' =>'AdminFixtures','action' => 'admin_fixt_ball_stat',$fixture_id));	
+						$this->redirect(array('controller' =>'AdminFixtures','action' => 'admin_fixt_ball_stat',$fixture_id));	
 				}
 				
 
@@ -26,8 +26,33 @@
 
 		public function admin_edit($fixtureid)
 		{
-			$find=$this->Fixture->editdata();
+			$find=$this->Fixture->editdata($fixtureid);
+			$this->set('fixturedata',$find);
+			$this->set('fixtureid',$fixtureid);
+			if(!empty($this->request->data))
+			{
+				
+				$this->Fixture->updatedata($fixtureid,$this->request->data);
+				$this->redirect(array('controller' =>'AdminFixtures','action' => 'admin_editfixt_ball_stat',$fixtureid));	
 
+			}
+
+		}
+
+		public function admin_editfixt_ball_stat($fixtureid)
+		{
+			$find=$this->Fixture->edit_home_ball_view($fixtureid);
+			$home_team=$this->FixtureBall->getballinfo($fixtureid);
+			foreach ($find as $key => $value) {
+				$home_team_name=$value['Team1']['team_name'];
+			}
+			$this->set('home_team_name',$home_team_name);
+			$this->set('fixtureid',$fixtureid);
+			$this->set('home_team',$home_team);
+			if(!empty($this->request->data))
+			{
+				$this->FixtureBall->edithome_ball($fixtureid,$this->request->data);
+			}
 		}
 
 		public function admin_fixt_ball_stat($fixture_id)
