@@ -107,5 +107,53 @@
 
 			 return $find;	
 		}
+
+		public function edit_bat($fixtureid,$data)
+		{
+			$i=0;
+			$j=0;
+			foreach ($data as $key => $value) {
+				if($i%8==0)
+				{
+
+					if(!empty($value))
+					{
+
+						$find_pid=$this->Player->find('first',array('conditions'=>array('Player.first_name'=>$data[$key]),
+																		'fields'=>array('Player.id')));
+						$player=$find_pid['Player']['id'];
+						$detail=$j.'detail';
+						$run=$j.'run';
+						$balls=$j.'balls';
+						$fours=$j.'4s';
+						$sixs=$j.'6s';
+						$teamid=$j.'teamid';
+						$id=$j.'id';
+						$sr=($data[$run]/$data[$balls])*100;
+						$data1[$j]['playerid']=$player;
+						$data1[$j]['detail']=$data[$detail];
+						$data1[$j]['run']=$data[$run];
+						$data1[$j]['balls']=$data[$balls];
+						$data1[$j]['4s']=$data[$fours];
+						$data1[$j]['6s']=$data[$sixs];
+						$data1[$j]['team_id']=$data[$teamid];
+						$data1[$j]['sr']=$sr;
+						$data1[$j]['fixtureid']=$fixtureid;
+
+							if(!empty($data[$id]))
+							{
+								$this->id=$data[$id];
+								$this->save($data1[$j]);	
+							}
+						
+						
+						$j++;
+
+					}
+					
+				}	 $i++;
+				 	
+			}  
+		}
 	}
 ?>

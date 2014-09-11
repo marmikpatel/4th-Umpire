@@ -37,7 +37,7 @@
                 <input name="winner" id="winner" value="" type="text">
              </p>
              <p>
-                <input type="submit" value="Sign In Now" class="submit"/>
+                <input type="submit" value="Next" class="submit"/>
              </p>
                
         </div>

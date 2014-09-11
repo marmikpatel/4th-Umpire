@@ -18,8 +18,8 @@
 				<td><?php echo $this->Html->link($value['Fixture']['score'],array('controller'=>'Fixtures','action'=>'fixture_stat',$value['Fixture']['id'])); ?></td>
 				<?php if($this->Session->check('admin')){ ?>
 
-				<td>	<p><?php echo $this->Html->link("Edit",array('controller'=>'AdminFixtures','action'=>'admin_edit',$value['Fixture']['id'])); ?></p>
-						<p>Delete</p></td>
+				<td>	<p><?php echo $this->Html->link("Edit",array('controller'=>'AdminFixtures','action'=>'edit_index',$value['Fixture']['id'])); ?></p>
+						<p><?php echo $this->Html->link("Delete",array('controller'=>'AdminFixtures','action'=>'admin_delete',$value['Fixture']['id'])); ?></p></td>
 				<?php  }?>
 			</tr>
 

@@ -24,7 +24,6 @@
 
 		public function home_ball_stat($home,$fixtureid,$teamid)
 		{
-			echo "<pre>"; print_r($home); 
 			$i=0;
 			$j=0;
 			foreach ($home as $key => $value) {
@@ -109,18 +108,58 @@
 		{
 
 			$this->unbindModel(array('hasOne' => array('Team')));
-			// $this->Fixture->unbindModel(array('belongsTo' => array('Team')));
-
-			// $this->Fixture->unbindModel(array('belongsTo' => array('Team')));
-			// echo "<pre>"; print_r($fixturestat); exit;
-			 $find1 = $this->find('all', array('conditions' => array('FixtureBall.fixtureid' => $fixtureid)));
-		
+			$find1 = $this->find('all', array('conditions' => array('FixtureBall.fixtureid' => $fixtureid)));
 			return $find1;			
 		}
 
-		public function edithome_ball($fixtureid,$data)
+		public function edit_ball($fixtureid,$data)
 		{
-			echo "<pre>"; print_r($data); exit;
+		
+			$i=0;
+			$j=0;
+			foreach ($data as $key => $value) {
+				if($i%8==0)
+				{
+
+					if(!empty($value))
+					{
+
+						$find_pid=$this->Player->find('first',array('conditions'=>array('Player.first_name'=>$data[$key]),
+																		'fields'=>array('Player.id')));
+						$player=$find_pid['Player']['id'];
+						$over=$j.'over';
+						$match=$j.'match';
+						$run=$j.'run';
+						$wickets=$j.'wickets';
+						$extra=$j.'extra';
+						$teamid=$j.'teamid';
+						$id=$j.'id';
+						$econ=$data[$run]/$data[$over];
+						$data1[$j]['playerid']=$player;
+						$data1[$j]['o']=$data[$over];
+						$data1[$j]['m']=$data[$match];
+						$data1[$j]['r']=$data[$run];
+						$data1[$j]['w']=$data[$wickets];
+						$data1[$j]['extra']=$data[$extra];
+						$data1[$j]['teamid']=$data[$teamid];
+						$data1[$j]['econ']=$econ;
+						$data1[$j]['fixtureid']=$fixtureid;
+
+							if(!empty($data[$id]))
+							{
+								$this->id=$data[$id];
+								$this->save($data1[$j]);	
+							}
+						
+						
+						$j++;
+
+					}
+					
+				}	 $i++;
+				 	
+			}  
+			 
 		}
 
 	}

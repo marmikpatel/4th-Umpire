@@ -25,10 +25,12 @@
 
 		public $hasMany=array('FixtureBall'=>array(
 									'className'=>'FixtureBall',
-									'foreignKey'=>'fixtureid'),
+									'foreignKey'=>'fixtureid',
+									'dependent'=> true,),
 							  'FixtureBat'=>array(
 							  		'className'=>'FixtureBat',
-							  		'foreignKey'=>'fixtureid'));
+							  		'foreignKey'=>'fixtureid',
+							  		'dependent'=> true,));
 
 
 
@@ -118,7 +120,7 @@
 			return $find;
 		}
 
-		public function edit_home_ball_view($fixtureid)
+		public function edit_ball_view($fixtureid)
 		{
 
 			$this->unbindModel(array('hasMany' => array('FixtureBall','FixtureBat')));
@@ -127,6 +129,12 @@
 			return $find;
 		}
 
+		public function fixture_delete($fixtureid)
+		{
+			$this->delete($fixtureid,true);
+		}
+
+		
 		
 	}
 ?>

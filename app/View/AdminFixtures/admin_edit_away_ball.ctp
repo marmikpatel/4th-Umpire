@@ -2,10 +2,10 @@
 <div>
 <?php	 echo $this->Form->create("fixtureball", array(
                                                   'url' => array('controller' => 'AdminFixtures', 
-                                                                  'action' => 'admin_editfixt_ball_stat',$fixtureid)
+                                                                  'action' => 'admin_edit_away_ball',$fixtureid)
                                     ));
 ?>
-<h2><?php echo $home_team_name;  ?></h2>
+<h2><?php echo $away_team_name;  ?></h2>
 <h3>Balling Statistics</h3>
 	<table class="table table-hover">
 		<tr>
@@ -16,9 +16,10 @@
 				<th>W</th>
 				<th>Extras</th>
 		</tr>
-		<?php $i=0;
-		 foreach ($home_team as $key => $value) {
-				if($value['FixtureBall']['team_id']==$homeid){ ?>	
+
+		<?php  $i=0;
+			foreach ($away_team as $key => $value) {
+				if($value['FixtureBall']['team_id']==$awayid){ ?>	
 
 		<tr>
 				<td><input name=<?php echo $i.'player'; ?> id="player" value='<?php echo $value['Player']['first_name'];  ?>' type="text"></td>
