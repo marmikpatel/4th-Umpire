@@ -45,7 +45,7 @@
 						$data[$j]['r']=$home[$run];
 						$wickets='Home'.$j.'wickets';
 						$data[$j]['w']=$home[$wickets];
-						$econ=$home[$run]/$home[$over];
+						$econ=round($home[$run]/$home[$over],2);
 						$data[$j]['econ']=$econ;
 						$extra='Home'.$j.'extra';
 						$data[$j]['extra']=$home[$extra];
@@ -90,7 +90,7 @@
 						$data[$j]['r']=$away[$run];
 						$wickets='Away'.$j.'wickets';
 						$data[$j]['w']=$away[$wickets];
-						$econ=$away[$run]/$away[$over];
+						$econ=round($away[$run]/$away[$over],2);
 						$data[$j]['econ']=$econ;
 						$extra='Away'.$j.'extra';
 						$data[$j]['extra']=$away[$extra];
@@ -134,7 +134,7 @@
 						$extra=$j.'extra';
 						$teamid=$j.'teamid';
 						$id=$j.'id';
-						$econ=$data[$run]/$data[$over];
+						$econ=round($data[$run]/$data[$over],2);
 						$data1[$j]['playerid']=$player;
 						$data1[$j]['o']=$data[$over];
 						$data1[$j]['m']=$data[$match];

@@ -124,21 +124,32 @@
 				$this->set('fixtureid',$fixture_id);
 				$home_team=$this->Team->find('first',array('conditions'=>array('Team.id'=>'1'),
 															'fields'=>array('Team.team_name,Team.id')));
+				$tid=$home_team['Team']['id'];
+				$find_player_home=$this->Player->getplayer($tid);
+				//echo "<pre>"; print_r($find_player_home); exit;
+				$this->set('playername_home',$find_player_home);
 				$this->set('home_team',$home_team);
 				if(!empty($this->request->data))
 				{
-					foreach ($this->request->data as $key => $value) {
+					//echo "<pre>"; print_r($this->request->data); exit;
+					foreach ($this->request->data['Fixture'] as $key => $value) {
 						$substr=substr($key,0,4);
 						if($substr=="Home")
 						{
 							$home[$key]=$value;
 						} 
+					}
+						//echo "<pre>"; print_r($value); exit;
+					foreach ($this->request->data as $key => $value) {
+						$substr=substr($key,0,4);
 						if($substr=="Away")
 						{
 							$away[$key]=$value;
 						}
-						
+
 					}
+						
+					
 					$this->FixtureBall->home_ball_stat($home,$fixture_id,$home_team['Team']['id']);
 				
 					$this->FixtureBall->away_ball_stat($away,$fixture_id,$this->request->data['id']);
@@ -168,23 +179,37 @@
 			$this->set('fixtureid',$fixtureid);
 			$home_team=$this->Team->find('first',array('conditions'=>array('Team.id'=>'1'),
 															'fields'=>array('Team.team_name,Team.id')));
+			$tid=$home_team['Team']['id'];
+			$find_player_home=$this->Player->getplayer($tid);
+
+			$this->set('playername_home',$find_player_home);
+
 			$this->set('home_team',$home_team);
 			if(!empty($this->request->data))
 			{
-				foreach ($this->request->data as $key => $value) {
+				foreach ($this->request->data['Fixture'] as $key => $value) {
 						$substr=substr($key,0,4);
 						if($substr=="Home")
 						{
 							$home[$key]=$value;
 						} 
+												
+				}
+				foreach ($this->request->data as $key => $value) {
+						$substr=substr($key,0,4);
+
 						if($substr=="Away")
 						{
 							$away[$key]=$value;
-						}						
+						}
 				}
+				
 				$this->FixtureBat->home_bat_stat($home,$fixtureid,$home_team['Team']['id']);
 				
 				$this->FixtureBat->away_bat_stat($away,$fixtureid,$this->request->data['id']);
+				$this->Session->setFlash('Fixtures Saved Succesfully');
+				$this->redirect(array('controller' =>'Fixtures','action' => 'index'));	
+
 			}
 		}
 
@@ -217,8 +242,7 @@
 
 		public function admin_delete($fixtureid)
 		{
-			//echo "<pre>"; print_r($fixtureid); exit;
-			// $this->Fixture->fixture_delete($fixtureid);
+			
 			if($this->Fixture->delete($fixtureid,true))
 			{
 				$this->Session->setFlash('Recored Has been deleted');	

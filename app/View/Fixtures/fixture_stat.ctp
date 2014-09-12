@@ -31,7 +31,7 @@
 		 </tr>
 		<?php } ?>
 	</table>
-	<h3>Bowling Statistics</h3>
+	<h3>Balling Statistics</h3>
 	<table class="table table-hover">
 		<tr>
 				<th>Players</th>
@@ -82,7 +82,7 @@
 		 </tr>
 		<?php } ?>
 	</table>
-		<h3>Bowling Statistics</h3>
+		<h3>Balling Statistics</h3>
 
 	<table class="table table-hover">
 		<tr>

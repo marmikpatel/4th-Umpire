@@ -42,8 +42,9 @@
 						$data[$j]['4s']=$home[$four];
 						$six='Home'.$j.'6s';
 						$data[$j]['6s']=$home[$six];
-						$sr=($home[$run]/$home[$ball])*100;
+						$sr=round(($home[$run]/$home[$ball])*100,2);
 						$data[$j]['sr']=$sr;
+
 						$this->create();
 						$this->save($data[$j]);
 						$j++;
@@ -52,7 +53,7 @@
 				}
 				$i++;
 
-			}
+			} 
 			
 		}
 
@@ -81,7 +82,7 @@
 						$data[$j]['4s']=$away[$four];
 						$six='Away'.$j.'6s';
 						$data[$j]['6s']=$away[$six];
-						$sr=($away[$run]/$away[$ball])*100;
+						$sr=round(($away[$run]/$away[$ball])*100,2);
 
 						$data[$j]['sr']=$sr;
 						$this->create();
@@ -129,7 +130,7 @@
 						$sixs=$j.'6s';
 						$teamid=$j.'teamid';
 						$id=$j.'id';
-						$sr=($data[$run]/$data[$balls])*100;
+						$sr=round(($data[$run]/$data[$balls])*100,2);
 						$data1[$j]['playerid']=$player;
 						$data1[$j]['detail']=$data[$detail];
 						$data1[$j]['run']=$data[$run];

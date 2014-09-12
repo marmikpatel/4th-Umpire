@@ -1,6 +1,17 @@
+<?php
+
+	//echo "<pre>"; print_r($playername_home); exit;
+	$p_name[]='select';
+	foreach ($playername_home as $key => $value) {
+		//echo "<pre>"; print_r($value['player']); exit;
+		$k=$value['player']['first_name'];
+		$p_name[$k]=$k;
+	}
+	// echo "<pre>"; print_r($p_name); exit;
+  ?>
 <div>
 	<?php 
-            echo $this->Form->create("fixtureBall", array(
+            echo $this->Form->create(null, array(
                                                   'url' => array('controller' => 'AdminFixtures', 
                                                                   'action' => 'admin_fixt_ball_stat',$fixtureid)
                                     ));
@@ -18,12 +29,22 @@
 		</tr>
 		<?php for ($i=0; $i <11 ; $i++) { ?>
 		<tr class=<?php echo $i;?>>
-			<td><input name=<?php echo 'Home'.$i."playername" ?> value="" type="text"></td>
-			<td><input name=<?php echo 'Home'.$i."over" ?> value="" type="text"></td>
-			<td><input name=<?php echo 'Home'.$i."match" ?> value="" type="text"></td>
-			<td><input name=<?php echo 'Home'.$i."run" ?> value="" type="text"></td>
-			<td><input name=<?php echo 'Home'.$i."wickets" ?> value="" type="text"></td>
-			<td><input name=<?php echo 'Home'.$i."extra" ?> value="" type="text"></td>
+			<td><?php echo $this->Form->input('Home'.$i.'playername',array('label'=>false,'type'=>'select','options'=>$p_name)); ?></td>
+			<td><?php echo $this->Form->inupt('Home'.$i.'over',array('label'=>false,'type'=>'text')); ?></td>
+			<td><?php echo $this->Form->inupt('Home'.$i.'match',array('label'=>false,'type'=>'text')); ?></td>
+			<td><?php echo $this->Form->inupt('Home'.$i.'run',array('label'=>false,'type'=>'text')); ?></td>
+			<td><?php echo $this->Form->inupt('Home'.$i.'wickets',array('label'=>false,'type'=>'text')); ?></td>
+			<td><?php echo $this->Form->inupt('Home'.$i.'extra',array('label'=>false,'type'=>'text')); ?></td>
+
+
+
+
+	<!-- 			<td><input name=<?php //echo 'Home'.$i."playername" ?> value="" type="text"></td> -->
+ 			<!-- <td><input name=<?php //echo 'Home'.$i."over" ?> value="" type="text"></td>
+			<td><input name=<?php //echo 'Home'.$i."match" ?> value="" type="text"></td>
+			<td><input name=<?php //echo 'Home'.$i."run" ?> value="" type="text"></td>
+			<td><input name=<?php //echo 'Home'.$i."wickets" ?> value="" type="text"></td>
+			<td><input name=<?php //echo 'Home'.$i."extra" ?> value="" type="text"></td> -->
 		</tr>
 		 <?php } ?>
 	</table>
