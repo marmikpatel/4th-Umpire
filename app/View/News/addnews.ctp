@@ -2,8 +2,9 @@
         
 
   /*if ($this->Session->read('User.position') =='teamadmin') {*/
-      echo $this->Form->create('News',array(
-                         'method'=>'POST', 'controller'=>'News','action'=>'addnews')); 
+    echo $this->Form->create('News', array(
+                              'url' => array('controller' => 'News','action' => 'addnews'),
+                               'type'=>'file'));
                           // pass teamid as a params
 
       echo $this->Form->input('title',array(

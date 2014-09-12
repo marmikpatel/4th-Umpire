@@ -7,7 +7,7 @@
 	<td> Title :<?php echo  $data['News']['title'] ;?></td>
 </tr>
 <tr>
-	<td> <?php echo  $data['Image']['url'] ;?></td>
+	<td>  <img src=<?php echo '/4th-Umpire/'.$data['Image']['url']; ?> alt="icon"></td>
 </tr>
 <tr>
 	<td> Description :<?php echo  $data['News']['desc'] ;?></td>

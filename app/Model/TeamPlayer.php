@@ -3,6 +3,7 @@
 		public $useTable = 'team_player';
 		public $name='TeamPlayer';
 
+
 		
 		public $belongsTo = array(
         		
@@ -11,8 +12,7 @@
 		        	'foreignKey'=>'playerid'
 
 		        	// 'conditions'=>'Player.id => TeamPlayer.playerid'
-		        	)
-		    );
+		        	)		    );
 
 
 		
@@ -28,16 +28,7 @@
 
     			
 		}
-
-
-		public function desc($pid){
-
-		    $conditions = array('TeamPlayer.playerid' => $pid);
-   	        return $this->find('first',compact('conditions'));
-
-
-    			
-		}
+		
 		
 	}
 ?>
