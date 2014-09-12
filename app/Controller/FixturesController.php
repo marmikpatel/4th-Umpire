@@ -2,12 +2,13 @@
 	class FixturesController extends AppController{
 		public $name = 'Fixtures';
 		public $helpers= array('Html' , 'Form');
-		public $uses=array('Fixture','Player');
+		public $uses=array('Fixture','Player','FixtureBall','FixtureBat');
 
 		public function index()
 		{
 			$teamid='1';
 			$find=$this->Fixture->getdata($teamid);
+			//echo "<pre>"; print_r($find); exit;
 			$this->set('fixture',$find);
 		}
 
@@ -16,78 +17,52 @@
 			
 			$this->Fixture->unbindModel(array('hasOne'=>array('Result')));
 			$fixture_stat=$this->Fixture->getfixture_ball($fixtureid);
-			//echo "<pre>"; print_r($fixture_stat); exit;
+			$f_ball=$this->FixtureBall->getballinfo($fixtureid);
+			$f_bat=$this->FixtureBat->getbatinfo($fixtureid);
+
+
 			foreach ($fixture_stat as $key => $value) {
 				$home_team_name=$value['Team1']['team_name'];
 				$away_team_name=$value['Team']['team_name'];
-				foreach ($value['FixtureBall'] as $k => $v) {
-					//echo "<pre>"; print_r($v); exit;
+			}
+			foreach ($f_ball as $key => $value) {
 
-					if($v['team_id']=='1')
-					{
-						$home_team[]=$this->Player->find('all',array(
-																'conditions'=>array(
-																	'Player.id'=>$v['playerid']),
-																'fields'=>array('Player.first_name')
-																)
-														);
-					}
-					else
-					{
-						$away_team[]=$this->Player->find('all',array(
-																'conditions'=>array(
-																	'Player.id'=>$v['playerid']),
-																'fields'=>array('Player.first_name')
-																)
-														);
-					}
-										
-
+				if($value['FixtureBall']['team_id']=='1')
+				{
+					$home_team_ball[]=$value;
 				}
-				//echo "<pre>"; print_r($home_team); exit;
-				/*foreach ($value['FixtureBat'] as $k1 => $v1) {
-					if($v1['team_id']=='1')
-					{
-						$home_team_bat[]=$v1;
-					}
-					else
-					{
-						$away_team_bat[]=$v1;
-					}
-					$find_batPlayer[]=$this->Player->find('all',array(
-																'conditions'=>array(
-																	'Player.id'=>$v1['playerid']),
-																'fields'=>array('Player.first_name')
-																)
-														);
-					echo "<pre>"; print_r($find_batPlayer); exit;
-				}*/
+				else
+				{
+					$away_team_ball[]=$value;
+				}
 
 			}
 
+			foreach ($f_bat as $key => $value) {
+				if($value['FixtureBat']['team_id']=='1')
+				{
+					$home_team_bat[]=$value;
+				}
+				else
+				{
+					$away_team_bat[]=$value;
+				}
+			}
+
+		
+
 			$this->set('home_team_name',$home_team_name);
 			$this->set('away_team_name',$away_team_name);
-			$this->set('home_team',$home_team);
-			$this->set('away_team',$away_team);
-			// $this->set('away_team_ball',$away_team_ball);
-			// $this->set('away_team_bat',$away_team_bat);
+			$this->set('home_team_ball',$home_team_ball);
+			$this->set('away_team_ball',$away_team_ball);
+			$this->set('home_team_bat',$home_team_bat);
+			$this->set('away_team_bat',$away_team_bat);
 		}
 
 
-		public function admin_edit($fixtureid)
-		{
-			$find=$this->Fixture->editdata();
-
-		}
-
-		public function admin_add()
-		{
 		
-			if(!empty($this->request->data))
-			{
-				echo "<pre>"; print_r($this->request->data); exit;
-			}	
-		}
+
+		
 
 	}
 ?>

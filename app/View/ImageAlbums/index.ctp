@@ -8,7 +8,7 @@
 			?>
 			<tr>			
 				<td> 
-					<img src=<?php echo '/4thUmpire/'.$value['Image']['0']['url']; ?> alt="icon">
+					<img src=<?php echo '/4th-Umpire/'.$value['Image']['0']['url']; ?> alt="icon">
 				</td>
 				<td>
 					<?php  echo $this->Html->link($value['ImageAlbum']['title'],array('controller'=>'ImageAlbums','action'=>'album_images',$value['ImageAlbum']['id'])); ?>

@@ -1,6 +1,7 @@
 <script type="text/javascript">
  $(document).ready(function() {
-        $( "#datepicker" ).datepicker();
+       // $( "#datepicker" ).datepicker();
+        $( "#datepicker" ).datepicker({ dateFormat: "yy-mm-dd" });
 });
 
 </script>
@@ -8,7 +9,7 @@
 <div>
 	<?php 
             echo $this->Form->create("fixture", array(
-                                                  'url' => array('controller' => 'Fixtures', 
+                                                  'url' => array('controller' => 'AdminFixtures', 
                                                                   'action' => 'admin_add')
                                     ));
        ?>
@@ -32,7 +33,11 @@
                 <input name="result" id="result" value="" type="text">
              </p> 
              <p>
-                <input type="submit" value="Sign In Now" class="submit"/>
+                <label>Winner Team :</label>
+                <input name="winner" id="winner" value="" type="text">
+             </p>
+             <p>
+                <input type="submit" value="Next" class="submit"/>
              </p>
                
         </div>

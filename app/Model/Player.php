@@ -17,8 +17,18 @@
 			       //error : itz taking image.playerid=> teamplayer.id   :(
 
 		        	),
+					'TeamPlayer'=>array(
+						'className'=>'TeamPlayer',
+						'foreignKey'=>'playerid')
 		        
 		   );
+
+
+		public function getplayer($teamid)
+		{
+			$find=$this->TeamPlayer->find('all',array('conditions'=>array('TeamPlayer.teamid'=>$teamid)));
+			return $find;
+		}
 
 	}
 ?>

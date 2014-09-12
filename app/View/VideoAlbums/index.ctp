@@ -11,7 +11,7 @@
 			<tr>			
 				<td> 
 					<video width="170" height="138" controls>
-  						<source src=<?php echo '/4thUmpire/'.$value['Video']['0']['url']; ?> type=<?php echo 'video/'.$ext; ?>>
+  						<source src=<?php echo '/4th-Umpire/'.$value['Video']['0']['url']; ?> type=<?php echo 'video/'.$ext; ?>>
 					</video>
 				</td>
 				<td>
