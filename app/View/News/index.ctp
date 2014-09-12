@@ -13,18 +13,23 @@
                           Add news</a></button>
 
 <table table table-hover>
-<tr>
+<!-- <tr>
  	<td rowspan="2">Image path</td>
  	<td>Title</td>
 </tr>
 <tr>
 	<td>Description</td>
-</tr>
+</tr> -->
 
-<?php foreach ($data as $data) :?>
+<?php foreach ($data as $data) :
+
+// echo "<pre>"; print_r('/4thUmpire/newsphoto/'.$data['Image']['url']);exit;?>
+
 
 <tr>
-	<td rowspan="3"> <?php echo  $data['Image']['url'] ;?>	</td>
+
+	<td rowspan="3">   <img src=<?php echo '/4th-Umpire/'.$data['Image']['url']; ?> alt="icon">
+</td>
 	<td> <?php echo  $data['News']['title'] ;?> </td>
 </tr>
 

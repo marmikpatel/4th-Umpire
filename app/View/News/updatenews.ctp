@@ -1,7 +1,10 @@
  <?php
         
   /*if ($this->Session->read('User.position') =='teamadmin') {*/
-      echo $this->Form->create('News',array('method'=>'POST')); 
+      // echo $this->Form->create('News',array('method'=>'POST'),'type'=>'file'); 
+       echo $this->Form->create('News', array(
+                              'url' => array('controller'=>'News','action'=>'updatenews',
+                               $data['News']['id']),'type'=>'file'));
                           
 
       echo $this->Form->input('title',array(
@@ -12,7 +15,7 @@
       echo $this->Form->input('image',array(
                           'type'=>'file'));
       echo $this->Form->input('Update',array(
-                          'label'=>'','type'=>'submit','controller'=>'News','action'=>'updatenews', $data['News']['id']));
+                          'label'=>'','type'=>'submit'));
       echo $this->Form->end();
  /* } */
 ?>

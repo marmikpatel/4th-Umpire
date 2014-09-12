@@ -1,21 +1,22 @@
 <?php 
-	class TeamPlayersController extends AppController{
-		public $name = 'TeamPlayers';
+	class PlayersController extends AppController{
+		public $name = 'Players';
 		public $helpers= array('Html' , 'Form');
-		public $uses=array('TeamPlayer','Image','Player');
+		public $uses=array('Player','Image');
 
 	
 		public function index(){
 			
 			$team_id='1'; 
-			$data=$this->TeamPlayer->getdata($team_id); 
-			$this->set('data',$data);
+			$data=$this->Player->getdata($team_id); 
 
+			$this->set('data',$data);
 
 			// get image // join in model 
 			foreach ($data as $data) {
+
 				$image[] = $this->Image->find('first',array('conditions'=>array(
-											'Image.playerid'=>$data['player']['id'])));
+											'Image.playerid'=>$data['Player']['id'])));
 
 			}
 
@@ -26,12 +27,12 @@
 		
 		public function player_desc($pid)
 		{
-			$data=$this->TeamPlayer->player_desc($pid); 
+			$data=$this->Player->player_desc($pid); 
 			$this->set('data',$data);
 
 			// get image // join in model 
 			$image = $this->Image->find('first',array('conditions'=>array(
-											'Image.playerid'=>$data['player']['id'])));
+											'Image.playerid'=>$data['Player']['id'])));
 			$this->set('image',$image);
 
 
@@ -39,6 +40,7 @@
 		}
 
 		public function addplayer(){
+
 				/*if ($this->Session->read('User.position') =='teamadmin') {*/
 				if(!empty($this->request->data)){
 
@@ -48,16 +50,18 @@
 								!empty($this->request->data['Player']['contact'])) {
 						$data= $this->request->data;
 						$team_id='1'; //
-	                  	 $path=$this->TeamPlayer->getimage();
+	                  	 $path=$this->Player->getimage();
+	                		 // echo "<pre>"; print_r($path);exit;
 
-						$this->TeamPlayer->addplayer($team_id,$data,$path);	
+
+						$this->Player->addplayer($team_id,$data,$path);	
 						$this->Session->setFlash('Player added succesfully!');
 			        	$this->redirect(array('controller' => 'TeamPlayers','action' => 'index'));
   				
 			       		
 	                }else{
 	                	$this->Session->setFlash(__('All fields are mandatory!'));
-						$this->redirect(array('controller'=>'TeamPlayers','action'=>'addplayer'));
+						$this->redirect(array('controller'=>'Players','action'=>'addplayer'));
 					}
 				}
 			// }
