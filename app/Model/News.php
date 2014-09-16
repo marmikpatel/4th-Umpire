@@ -69,7 +69,7 @@
 	            $imagedata['Image']['url']=$path;
 	            	           	// echo "<pre>"; print_r($imagedata);exit;
 
-	            $imagedata['Image']['teamid']=$team_id;
+	           // $imagedata['Image']['teamid']=$team_id;
 	            $imagedata['Image']['newsid']=$this->getLastInsertID();
 	            $this->Image->save($imagedata);
 
@@ -86,7 +86,6 @@
 			  	$path = "img/newsphoto/";
 			    $valid_formats = array("jpg", "png", "gif", "bmp","JPG");
 			           if(isset($_FILES)){
-
 			                $name = $_FILES['data']['name']['News']['image'];
 			             	 $size = $_FILES['data']['size']['News']['image'];
 			             	
@@ -98,6 +97,7 @@
 			                        if($size<(1024*1024)){
 			                            $actual_image_name =$ext;
 			                            $tmp = $_FILES['data']['tmp_name']['News']['image'];
+
 
 			                            if(move_uploaded_file($tmp, $path.$actual_image_name)){
 			                                $uploadedfile = $path.$actual_image_name;
@@ -132,7 +132,8 @@
 			                                  imagedestroy($tmp1);
 			                                  unlink($path.$actual_image_name);	
 			                                  return $path.$name; 
-			                                   
+
+			                                 
 
 			                             }
 			                             else

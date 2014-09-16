@@ -8,19 +8,20 @@
 		public function index(){
 			
 			$team_id='1'; 
-			$data=$this->TeamPlayer->getdata($team_id); 
+			//$data=$this->TeamPlayer->getdata($team_id); 
+			$data=$this->Player->getplayerinfo($team_id);
+			//echo "<pre>"; print_r($data); exit;
 			$this->set('data',$data);
 
-
-			// get image // join in model 
+			/*// get image // join in model 
 			foreach ($data as $data) {
 				$image[] = $this->Image->find('first',array('conditions'=>array(
 											'Image.playerid'=>$data['player']['id'])));
 
 			}
 
-			$this->set('image',$image);
-				
+			$this->set('image',$image);*/
+
 		}
 
 		
@@ -41,7 +42,6 @@
 		public function addplayer(){
 				/*if ($this->Session->read('User.position') =='teamadmin') {*/
 				if(!empty($this->request->data)){
-
 					if(!empty($this->request->data['Player']['fname']) and
 						!empty($this->request->data['Player']['lname'])and
 							!empty($this->request->data['Player']['email'])and
@@ -62,14 +62,6 @@
 				}
 			// }
 		
-
-		}
-
-		public function editplayer(){
-
-		}
-
-		public function deleteplayer(){
 
 		}
 

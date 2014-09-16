@@ -6,7 +6,7 @@
 
 		public function index(){
 			
-			$team_id='1'; //
+			$team_id='1'; 
 			$this->set('data',$this->AboutUs->getdata($team_id));
 	
 		}

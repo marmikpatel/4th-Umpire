@@ -13,15 +13,28 @@
 		public $hasOne = array('Image' => array(
 			       'className' => 'Image',
 			       'foreignKey'=>'playerid',
-			        // 'conditions'=>' Image.playerid = TeamPlayer.playerid'
-			       //error : itz taking image.playerid=> teamplayer.id   :(
-
-		        	),
+			       'dependent'=> true),
 					'TeamPlayer'=>array(
 						'className'=>'TeamPlayer',
-						'foreignKey'=>'playerid')
+						'foreignKey'=>'playerid',
+						'dependent'=> true)
 		        
 		   );
+
+		public function getplayerinfo($teamid)
+		{
+			
+			$this->recursive=0;
+			$find=$this->find('all');
+			foreach ($find as $key => $value) {
+				if($value['TeamPlayer']['teamid']==$teamid)
+				{
+					$data[]=$value;
+				}
+			}
+
+			return $data;
+		}
 
 
 		public function getplayer($teamid)
@@ -34,12 +47,23 @@
 		public function player_desc($pid){
 
 		    $conditions = array('Player.id' => $pid);
-   	        return $this->find('first',compact('conditions'));
+   	        return $this->find('first',compact('conditions'));		
+		}
 
 
-    			
+		public function delete_player($playerid)
+		{
+			$this->delete($playerid,true);
+		}
+
+		public function edit_player($playerid)
+		{
+			$this->recursive=0;
+			$find=$this->find('first',array('conditions'=>array('Player.id'=>$playerid)));
+			return $find;
 		}
 		public function addplayer($team_id,$data,$path){
+
 
 				$player_data['Player']['teamid']=$team_id;
 	            $player_data['Player']['first_name']=$data['Player']['fname'];
@@ -52,7 +76,6 @@
 
 
 	            $imagedata['Image']['url']=$path;
-	            $imagedata['Image']['teamid']=$team_id;
 	            $imagedata['Image']['playerid']=$this->getLastInsertID();
 	            $this->Image->save($imagedata);
 

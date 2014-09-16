@@ -12,7 +12,6 @@
 
 			$this->set('data',$data);
 
-			// get image // join in model 
 			foreach ($data as $data) {
 
 				$image[] = $this->Image->find('first',array('conditions'=>array(
@@ -69,11 +68,28 @@
 
 		}
 
-		public function editplayer(){
+		
+
+		public function deleteplayer($playerid){
+
+			
+				$this->Player->delete_player($playerid);	
+				$this->Session->setFlash('Recored Has been deleted');	
+				$this->redirect(array('controller' =>'TeamPlayers','action' => 'index'));
+			
 
 		}
 
-		public function deleteplayer(){
+		public function edit_player($playerid)
+		{
+
+			//echo "<pre>"; print_r($playerid); exit;
+			$find=$this->Player->edit_player($playerid);
+			$this->set('player',$find);
+			if(!empty($this->request->data))
+			{
+				echo "<pre>"; print_r($this->request->data); exit;
+			}
 
 		}
 

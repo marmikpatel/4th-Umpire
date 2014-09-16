@@ -54,7 +54,9 @@
 			if(!empty($this->request->data))
 			{
 				$this->FixtureBall->edit_ball($fixtureid,$this->request->data);
+				$this->redirect(array('controller' =>'AdminFixtures','action' => 'edit_index',$fixtureid));
 			}
+
 		}
 
 		public function admin_edit_away_ball($fixtureid)
@@ -73,6 +75,7 @@
 			{
 				//echo "<pre>"; print_r($this->request->data); exit;
 				$this->FixtureBall->edit_ball($fixtureid,$this->request->data);
+				$this->redirect(array('controller' =>'AdminFixtures','action' => 'edit_index',$fixtureid));
 			}
 		}
 
@@ -93,6 +96,7 @@
 			{
 				//echo "<pre>"; print_r($this->request->data); exit;
 				$this->FixtureBat->edit_bat($fixtureid,$this->request->data);
+				$this->redirect(array('controller' =>'AdminFixtures','action' => 'edit_index',$fixtureid));
 			}
 
 
@@ -114,6 +118,7 @@
 			if(!empty($this->request->data))
 			{
 				$this->FixtureBat->edit_bat($fixtureid,$this->request->data);
+				$this->redirect(array('controller' =>'AdminFixtures','action' => 'edit_index',$fixtureid));
 			}
 
 
@@ -245,7 +250,7 @@
 			
 			if($this->Fixture->delete($fixtureid,true))
 			{
-				$this->Session->setFlash('Recored Has been deleted');	
+				$this->Session->setFlash('Recored deleted');	
 				$this->redirect(array('controller' =>'Fixtures','action' => 'index'));
 			}
 			

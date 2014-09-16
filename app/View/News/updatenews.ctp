@@ -1,4 +1,5 @@
  <?php
+ //echo "<pre>"; print_r($data['News']['desc']); exit;
         
   /*if ($this->Session->read('User.position') =='teamadmin') {*/
       // echo $this->Form->create('News',array('method'=>'POST'),'type'=>'file'); 
@@ -10,7 +11,7 @@
       echo $this->Form->input('title',array(
                           'label'=>'Title :','value'=> $data['News']['title'],'type'=>'textarea','rows'=>'1','cols'=>'20'));
       echo $this->Form->input('desc',array(
-                          'label'=>'Description :','value'=> $data['News']['desc'],'type'=>'textarea','rows'=>'4','cols'=>'50'));
+                          'label'=>'Description :','value'=> $data['News']['desc'],'rows'=>'4','cols'=>'50'));
       echo $data['Image']['url'];
       echo $this->Form->input('image',array(
                           'type'=>'file'));

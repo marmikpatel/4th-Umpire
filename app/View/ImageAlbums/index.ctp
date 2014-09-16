@@ -17,6 +17,13 @@
 
 					<?php echo $value['ImageAlbum']['description']; ?>
 				</td>
+				<td>
+				<?php if($this->Session->check('admin')){ ?>
+
+					<p><?php echo $this->Html->link("Edit",array('controller'=>'','action'=>'')); ?></p>
+						<p><?php echo $this->Html->link("Delete",array('controller'=>'','action'=>'')); ?></p>
+				<?php  }?>
+			</td>
 			</tr>
 
 			<?php } ?>
