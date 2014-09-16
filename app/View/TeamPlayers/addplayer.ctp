@@ -1,3 +1,10 @@
+ <script type="text/javascript">
+ $(document).ready(function() {
+       // $( "#datepicker" ).datepicker();
+        $( "#datepicker" ).datepicker({ dateFormat: "yy-mm-dd" });
+});
+
+</script>
  <?php
         
 
@@ -13,7 +20,7 @@
                           'label'=>'Last Name :','type'=>'text'));
       echo $this->Form->input('birthdate',array(
                           'label'=>'Date Of Birth :',
-                          'type'=>"date"));
+                          'type'=>'text', 'id'=>'datepicker'));
       echo $this->Form->input('email',array(
                           'label'=>'Email Id :','type'=>'text')); 
       echo $this->Form->input('contact',array(

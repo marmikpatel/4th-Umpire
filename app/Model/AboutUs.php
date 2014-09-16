@@ -16,7 +16,7 @@
 
 	        $conditions = array('AboutUs.team_id' => $team_id);
 	        return $this->find('first', compact('conditions'));
-    			
+	         			
 		}
 
 		

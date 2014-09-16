@@ -8,6 +8,7 @@
 			
 			$team_id='1'; //
 			$this->set('data',$this->News->getdata($team_id));
+
 	
 		}
 
@@ -40,8 +41,10 @@
 									!empty($this->request->data['News']['desc'])) {
 						$data= $this->request->data;
 
+
 						if (!empty($this->request->data['News']['image']['name']) and
 										!empty($this->request->data['News']['image']['type'])) {
+
 
 		                   $path=$this->News->getimage();
 						}
